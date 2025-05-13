@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MVA Green Field | Premium Real Estate</title>
     <style>
         /* Reset and base styles */
@@ -14,7 +14,8 @@
         }
 
         body {
-            color: #333;
+            color: #222;
+            background-color: #fefefe;
             line-height: 1.6;
         }
 
@@ -52,13 +53,14 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: #222;
+            font-weight: 600;
+            transition: color 0.4s ease, transform 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #c4a052;
+            color: #a67c00;
+            transform: scale(1.1);
         }
 
         /* Hero section */
@@ -92,11 +94,13 @@
             font-size: 42px;
             margin-bottom: 20px;
             font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
         }
 
         .hero p {
             font-size: 20px;
             margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
         }
 
         .ready-tag {
@@ -113,11 +117,21 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px 20px;
         }
 
         .section {
             margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-title {
@@ -449,6 +463,20 @@
             color: #c4a052;
         }
 
+        /* Gitam College Location Section */
+        #gitam-location p {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .map-container iframe {
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         /* Footer */
         footer {
             background-color: #222;
@@ -508,8 +536,9 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
             cursor: pointer;
+            user-select: none;
         }
 
         .btn-primary {
@@ -518,8 +547,8 @@
         }
 
         .btn-primary:hover {
-            background-color: #b08d3c;
-            transform: translateY(-2px);
+            background-color: #a67c00;
+            transform: translateY(-3px);
         }
 
         .btn-outline {
@@ -529,9 +558,9 @@
         }
 
         .btn-outline:hover {
-            background-color: #c4a052;
+            background-color: #a67c00;
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .btn-dark {
@@ -541,7 +570,24 @@
 
         .btn-dark:hover {
             background-color: #444;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile nav toggle button */
+        .mobile-nav-button {
+            background-color: #c4a052;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            user-select: none;
+        }
+
+        .mobile-nav-button:hover {
+            background-color: #a67c00;
         }
 
         /* Media queries */
@@ -582,14 +628,158 @@
             .section-title {
                 font-size: 28px;
             }
+
+            .mobile-nav-button {
+                display: block !important;
+                position: absolute;
+                right: 20px;
+                top: 25px;
+                z-index: 150;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 100;
+            }
+
+            .nav-links.show {
+                display: flex !important;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
         }
+        #chatbot-container {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          z-index: 9999;
+        }
+
+        #chatbot-toggle {
+          background-color: #c4a052;
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-weight: 600;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          transition: background-color 0.3s ease;
+        }
+
+        #chatbot-toggle:hover {
+          background-color: #a67c00;
+        }
+
+        #chatbot {
+          width: 320px;
+          max-height: 400px;
+          background: white;
+          border-radius: 10px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          margin-top: 10px;
+        }
+
+        #chatbot.hidden {
+          display: none;
+        }
+
+        #chatbot header {
+          background-color: #c4a052;
+          color: white;
+          padding: 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        #chatbot header h2 {
+          margin: 0;
+          font-size: 18px;
+        }
+
+        #chatbot-close {
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        #chatbot-messages {
+          list-style: none;
+          padding: 15px;
+          flex-grow: 1;
+          overflow-y: auto;
+          font-size: 14px;
+        }
+
+        #chatbot-messages li {
+          margin-bottom: 10px;
+          line-height: 1.4;
+        }
+
+        .bot-message {
+          color: #444;
+        }
+
+        .user-message {
+          text-align: right;
+          color: #c4a052;
+          font-weight: 600;
+        }
+
+        #chatbot-input-area {
+          display: flex;
+          border-top: 1px solid #ddd;
+        }
+
+        #chatbot-input {
+          flex-grow: 1;
+          border: none;
+          padding: 10px;
+          font-size: 14px;
+        }
+
+        #chatbot-input:focus {
+          outline: none;
+        }
+
+        #chatbot-send {
+          background-color: #c4a052;
+          border: none;
+          color: white;
+          padding: 10px 15px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: background-color 0.3s ease;
+        }
+
+        #chatbot-send:hover {
+          background-color: #a67c00;
+        }
+
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="top-nav">
-            <img src="/api/placeholder/150/50" alt="MVA Green Field Logo" class="logo">
+            <img src="ChatGPT Image May 8, 2025, 10_16_16 PM.png" alt="MVA Green Field Logo" class="logo" />
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -605,7 +795,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <span class="ready-tag">READY TO OCCUPY</span>
-            <h1>MVA GREEN FIELD</h1>
+            <h1>SSV INFRA DEVELOPERS</h1>
             <p>Premium Residential Apartments in the Heart of India</p>
             <a href="#floor-plans" class="btn btn-primary">Explore Floor Plans</a>
         </div>
@@ -615,10 +805,10 @@
     <section class="section container" id="about">
         <h2 class="section-title">About Green Field</h2>
         <div class="about-card">
-            <img src="/api/placeholder/400/320" alt="Green Field Project">
+            <img src="ChatGPT Image May 8, 2025, 10_16_16 PM.png" alt="Green Field Project" />
             <div class="about-content">
-                <h3>Smart MVA Green Field</h3>
-                <p>It is built in the heart of the city of India... Experience luxurious living with state-of-the-art amenities and modern design. Our residential complex offers spacious apartments with premium finishes and spectacular views.</p>
+                <h3>SSV INFRA DEVELOPERS</h3>
+                <p>SSV Infra & Developers is a trusted real estate and construction company committed to delivering high-quality residential and commercial projects. With a focus on innovation, transparency, and customer satisfaction, we specialize in land development, plot ventures, and property construction. Our mission is to create value-driven spaces that meet the needs of modern living while ensuring long-term investment growth.</p>
                 <p>Strategically located with easy access to major business districts, educational institutions, healthcare facilities, and entertainment hubs.</p>
                 <div style="margin-top: 20px;">
                     <a href="#contact" class="btn btn-primary">Book a Site Visit</a>
@@ -633,28 +823,28 @@
         <h2 class="section-title">Block II - Floor Plans</h2>
         <div class="floor-plans">
             <div class="plan-card">
-                <img src="/api/placeholder/300/200" alt="2BHK Floor Plan">
+                <img src="/api/placeholder/300/200" alt="2BHK Floor Plan" />
                 <div class="plan-info">
                     <h4>2 BHK</h4>
                     <p>950-1050 sq.ft</p>
                 </div>
             </div>
             <div class="plan-card">
-                <img src="/api/placeholder/300/200" alt="2.5BHK Floor Plan">
+                <img src="/api/placeholder/300/200" alt="2.5BHK Floor Plan" />
                 <div class="plan-info">
                     <h4>2.5 BHK</h4>
                     <p>1100-1200 sq.ft</p>
                 </div>
             </div>
             <div class="plan-card">
-                <img src="/api/placeholder/300/200" alt="3BHK Floor Plan">
+                <img src="/api/placeholder/300/200" alt="3BHK Floor Plan" />
                 <div class="plan-info">
                     <h4>3 BHK</h4>
                     <p>1350-1450 sq.ft</p>
                 </div>
             </div>
             <div class="plan-card">
-                <img src="/api/placeholder/300/200" alt="3BHK Premium Floor Plan">
+                <img src="/api/placeholder/300/200" alt="3BHK Premium Floor Plan" />
                 <div class="plan-info">
                     <h4>3 BHK Premium</h4>
                     <p>1550-1650 sq.ft</p>
@@ -668,7 +858,7 @@
         <h2 class="section-title">MVA Green Field Walk-Through</h2>
         <div class="video-section">
             <div class="video-container">
-                <img src="/api/placeholder/800/450" alt="Video Thumbnail" class="video-thumbnail">
+                <img src="/api/placeholder/800/450" alt="Video Thumbnail" class="video-thumbnail" />
                 <div class="play-button"></div>
             </div>
         </div>
@@ -678,10 +868,10 @@
     <section class="section container">
         <div class="villa-section">
             <div class="villa-image">
-                <img src="/api/placeholder/400/500" alt="Luxury Villa">
+                <img src="/api/placeholder/400/500" alt="Luxury Villa" />
             </div>
             <div class="villa-content">
-                <h3>Luxury Villas @ Green Field</h3>
+                <h3>SSV INFRA DEVELOPERS</h3>
                 <p>Experience unparalleled luxury with our exclusive villa collection at Green Field. These sophisticated homes blend modern design with timeless elegance.</p>
                 <p>Each villa features private gardens, premium finishes, spacious living areas, and state-of-the-art smart home technology. Perfect for those seeking an elevated lifestyle in a secure, gated community.</p>
                 <div style="margin-top: 20px;">
@@ -697,25 +887,25 @@
         <h2 class="section-title">Premium Amenities</h2>
         <div class="amenities-grid">
             <div class="amenity-card">
-                <img src="/api/placeholder/300/200" alt="Swimming Pool">
+                <img src="/api/placeholder/300/200" alt="Swimming Pool" />
                 <div class="amenity-info">
                     <h4>Swimming Pool</h4>
                 </div>
             </div>
             <div class="amenity-card">
-                <img src="/api/placeholder/300/200" alt="Gym">
+                <img src="/api/placeholder/300/200" alt="Gym" />
                 <div class="amenity-info">
                     <h4>Modern Gym</h4>
                 </div>
             </div>
             <div class="amenity-card">
-                <img src="/api/placeholder/300/200" alt="Club House">
+                <img src="/api/placeholder/300/200" alt="Club House" />
                 <div class="amenity-info">
                     <h4>Club House</h4>
                 </div>
             </div>
             <div class="amenity-card">
-                <img src="/api/placeholder/300/200" alt="Children's Play Area">
+                <img src="/api/placeholder/300/200" alt="Children's Play Area" />
                 <div class="amenity-info">
                     <h4>Children's Play Area</h4>
                 </div>
@@ -770,7 +960,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <a href="#contact" class="btn btn-primary">Download Brochure</a>
+                <a href="brochure.pdf" download class="btn btn-primary">Download Brochure</a>
             </div>
         </div>
     </section>
@@ -780,28 +970,28 @@
         <h2 class="section-title">Project Gallery</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Building Exterior">
+                <img src="/api/placeholder/300/200" alt="Building Exterior" />
             </div>
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Living Room">
+                <img src="/api/placeholder/300/200" alt="Living Room" />
             </div>
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Bedroom">
+                <img src="/api/placeholder/300/200" alt="Bedroom" />
             </div>
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Kitchen">
+                <img src="/api/placeholder/300/200" alt="Kitchen" />
             </div>
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Swimming Pool">
+                <img src="/api/placeholder/300/200" alt="Swimming Pool" />
             </div>
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Garden">
+                <img src="/api/placeholder/300/200" alt="Garden" />
             </div>
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Gym">
+                <img src="/api/placeholder/300/200" alt="Gym" />
             </div>
             <div class="gallery-item">
-                <img src="/api/placeholder/300/200" alt="Club House">
+                <img src="/api/placeholder/300/200" alt="Club House" />
             </div>
         </div>
     </section>
@@ -812,31 +1002,40 @@
             <h2 class="section-title">Endorsed by the Best in the Business</h2>
             <div class="testimonial-card">
                 <div class="testimonial-image">
-                    <img src="/api/placeholder/200/200" alt="Testimonial Person">
                 </div>
                 <div class="testimonial-content">
-                    <h3>Raj Kumar</h3>
-                    <p>"MVA Green Field offers the perfect blend of luxury, comfort, and convenience. The attention to detail in design and construction is truly impressive."</p>
-                    <p>Real Estate Expert</p>
+                    <h3>Ravi Kumar </h3>
+                    <p>"SSV Infra made my dream of owning a plot a reality. The process was smooth, and their team was very supportive throughout. Highly recommended!"."</p>
+                    <p>Middle class employee</p>
+                </div>
+                <div class="testimonial-content">
+                    <h3>Sneha Reddy – Vizag</h3>
+                    <p>"I loved how transparent and professional the team at SSV Infra is. The layout was well-planned, and registration was hassle-free.</p>
+                    <p>Software employee</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Map Section -->
-    <section class="map-section">
-        <img src="/api/placeholder/1200/400" alt="Location Map" style="width: 100%; height: 100%; object-fit: cover;">
-        <div class="map-overlay">
-            <h3>Strategic Location</h3>
-            <p>Located in the heart of the city with easy access to:</p>
-            <ul style="margin-left: 20px; margin-top: 10px;">
-                <li>Major highways</li>
-                <li>Shopping centers</li>
-                <li>Educational institutions</li>
-                <li>Healthcare facilities</li>
-                <li>IT parks</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary" style="margin-top: 20px;">Get Directions</a>
+   
+
+    <!-- Gitam College Location Section -->
+    <section class="section container" id="gitam-location">
+        <h2 class="section-title">Gitam College Location</h2>
+        <p>Gitam College is located at Rushikonda, Visakhapatnam, Andhra Pradesh, India.</p>
+        <p>Address: Rushikonda Beach Road, Visakhapatnam, Andhra Pradesh 530045</p>
+        <p>Contact: +91 891 284 0611</p>
+        <div class="map-container" style="width:100%;height:400px;">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.1234567890123!2d83.3567!3d17.7854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a395f1a2b3c4d5f%3A0x123456789abcdef!2sGitam%20College!5e0!3m2!1sen!2sin!4v1234567890"
+                width="100%"
+                height="400"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
         </div>
     </section>
 
@@ -845,10 +1044,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h4>MVA Green Field</h4>
+                    <h4>SSV INFRA DEVELOPERS</h4>
                     <p>Premium residential apartments designed for modern living with world-class amenities.</p>
                     <div style="margin-top: 20px;">
-                        <img src="/api/placeholder/150/50" alt="MVA Green Field Logo" style="filter: brightness(0) invert(1);">
+                        <img src="ChatGPT Image May 8, 2025, 10_16_16 PM.png" height="200px" alt="MVA Green Field Logo" style="filter: brightness(0) invert(1);" />
                     </div>
                 </div>
                 <div class="footer-column">
@@ -862,7 +1061,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div id="contact" class="Contact Us footer-column">
                     <h4>Contact Us</h4>
                     <ul>
                         <li>Sales Office: Green Field Complex, Main Street, City</li>
@@ -880,26 +1079,46 @@
                         <a href="#" style="color: white; font-size: 24px;">🐦</a>
                     </div>
                     <div style="margin-top: 20px;">
-                        <img src="/api/placeholder/80/30" alt="SBI Logo" style="margin-right: 10px;">
-                        <img src="/api/placeholder/80/30" alt="Bank Logo">
+                        <img src="/api/placeholder/80/30" alt="SBI Logo" style="margin-right: 10px;" />
+                        <img src="/api/placeholder/80/30" alt="Bank Logo" />
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 MVA Green Field. All Rights Reserved.</p>
+                <p>&copy; 2025 SSV INFRA DEVELOPERS. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container">
+      <button id="chatbot-toggle">Chat</button>
+      <div id="chatbot" class="hidden">
+        <header>
+          <h2>Chatbot</h2>
+          <button id="chatbot-close">&times;</button>
+        </header>
+        <ul id="chatbot-messages">
+          <li class="bot-message">Hi! How can I help you today?</li>
+        </ul>
+        <div id="chatbot-input-area">
+          <input type="text" id="chatbot-input" placeholder="Type your message..." autocomplete="off" />
+          <button id="chatbot-send">Send</button>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Simple JavaScript for basic interactions -->
     <script>
         // Play button functionality
-        document.querySelector('.play-button').addEventListener('click', function() {
-            alert("Video would play here. In a real implementation, this would trigger a video player.");
+        document.querySelector('.play-button').addEventListener('click', function () {
+            alert(
+                'Video would play here. In a real implementation, this would trigger a video player.'
+            );
         });
 
         // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
 
@@ -909,7 +1128,7 @@
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                        behavior: 'smooth',
                     });
                 }
             });
@@ -921,60 +1140,22 @@
             const mobileNavButton = document.createElement('div');
             mobileNavButton.className = 'mobile-nav-button';
             mobileNavButton.innerHTML = '☰';
-            mobileNavButton.style.fontSize = '24px';
-            mobileNavButton.style.cursor = 'pointer';
-            mobileNavButton.style.display = 'none';
 
             const navLinks = document.querySelector('.nav-links');
 
-            mobileNavButton.addEventListener('click', function() {
+            mobileNavButton.addEventListener('click', function () {
                 navLinks.classList.toggle('show');
             });
 
             // Insert the button in the header
             header.appendChild(mobileNavButton);
-
-            // Add media query styles
-            const style = document.createElement('style');
-            style.textContent = `
-                @media (max-width: 768px) {
-                    .mobile-nav-button {
-                        display: block !important;
-                        position: absolute;
-                        right: 20px;
-                        top: 25px;
-                    }
-
-                    .nav-links {
-                        display: none;
-                        position: absolute;
-                        top: 80px;
-                        left: 0;
-                        width: 100%;
-                        background-color: white;
-                        flex-direction: column;
-                        padding: 20px;
-                        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                        z-index: 100;
-                    }
-
-                    .nav-links.show {
-                        display: flex !important;
-                    }
-
-                    .nav-links li {
-                        margin: 10px 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
         }
 
-        // Contact form validation
+        // Contact form validation (if contact form added later)
         function setupContactForm() {
             const contactForm = document.getElementById('contact-form');
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+                contactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
 
                     const nameInput = document.getElementById('name');
@@ -1025,8 +1206,8 @@
         function setupImageSlider() {
             const galleryItems = document.querySelectorAll('.gallery-item');
 
-            galleryItems.forEach(item => {
-                item.addEventListener('click', function() {
+            galleryItems.forEach((item) => {
+                item.addEventListener('click', function () {
                     const imgSrc = this.querySelector('img').src;
                     openLightbox(imgSrc);
                 });
@@ -1061,7 +1242,7 @@
                 closeBtn.style.fontSize = '40px';
                 closeBtn.style.cursor = 'pointer';
 
-                closeBtn.addEventListener('click', function() {
+                closeBtn.addEventListener('click', function () {
                     document.body.removeChild(lightbox);
                 });
 
@@ -1072,11 +1253,83 @@
         }
 
         // Initialize all functionalities
-        window.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('DOMContentLoaded', function () {
             createMobileNav();
             setupContactForm();
             setupImageSlider();
         });
-</script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const chatbotToggle = document.getElementById('chatbot-toggle');
+          const chatbot = document.getElementById('chatbot');
+          const chatbotClose = document.getElementById('chatbot-close');
+          const sendBtn = document.getElementById('chatbot-send');
+          const inputField = document.getElementById('chatbot-input');
+          const messagesList = document.getElementById('chatbot-messages');
+
+          // Show chatbot on toggle button click
+          chatbotToggle.addEventListener('click', () => {
+            chatbot.classList.toggle('hidden');
+          });
+
+          // Close chatbot on close button click
+          chatbotClose.addEventListener('click', () => {
+            chatbot.classList.add('hidden');
+          });
+
+          // Function to add message to chat
+          function addMessage(text, sender) {
+            const li = document.createElement('li');
+            li.textContent = text;
+            li.className = sender === 'user' ? 'user-message' : 'bot-message';
+            messagesList.appendChild(li);
+            messagesList.scrollTop = messagesList.scrollHeight;
+          }
+
+          // Simple bot response logic
+          function getBotResponse(userText) {
+            const text = userText.toLowerCase();
+
+            if (text.includes('price')) {
+              return 'Our prices vary depending on the project. Please provide more details.';
+            } else if (text.includes('location')) {
+              return 'We are located in multiple areas. Can you specify which location interests you?';
+            } else if (text.includes('contact')) {
+              return 'You can contact us at contact@mva-greenfield.com or call +1234567890.';
+            } else if (text.includes('hello') || text.includes('hi')) {
+              return 'Hello! How can I assist you today?';
+            } else {
+              return "Sorry, I didn't understand that. Could you please rephrase?";
+            }
+          }
+
+          // Send message handler
+          function sendMessage() {
+            const userText = inputField.value.trim();
+            if (!userText) return;
+
+            addMessage(userText, 'user');
+            inputField.value = '';
+
+            // Simulate bot response delay
+            setTimeout(() => {
+              const botReply = getBotResponse(userText);
+              addMessage(botReply, 'bot');
+            }, 600);
+          }
+
+          // Send message on button click
+          sendBtn.addEventListener('click', sendMessage);
+
+          // Send message on Enter key press
+          inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              sendMessage();
+            }
+          });
+        });
+
+    </script>
 </body>
 </html>
